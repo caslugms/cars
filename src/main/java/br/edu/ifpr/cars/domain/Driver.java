@@ -33,7 +33,7 @@ public class Driver {
     LocalDate birthDate;
 
     @NotBlank(message = "O email é obrigatório")
-    @Email(message = "Deve ser um email válido")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$", message = "Deve ser um email válido com domínio completo (exemplo: usuario@dominio.com)")
     @Pattern(regexp = "\\S+", message = "O email não pode conter espaços")
     String email;
 
