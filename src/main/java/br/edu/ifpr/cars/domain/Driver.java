@@ -12,6 +12,11 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import br.edu.ifpr.cars.validate.PlacaValida;
+import br.edu.ifpr.cars.validate.CNHValida;
+import br.edu.ifpr.cars.validate.AnoFabricacaoValido;
+import br.edu.ifpr.cars.validate.SemPalavrasOfensivas;
+
 @Entity
 @Data
 public class Driver {
@@ -36,4 +41,16 @@ public class Driver {
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF deve estar no formato 000.000.000-00")
     @Pattern(regexp = "\\S+", message = "O CPF não pode conter espaços")
     String cpf;
+
+    @PlacaValida
+    String placa;
+
+    @CNHValida
+    String cnh;
+
+    @AnoFabricacaoValido
+    int anoCarro;
+
+    @SemPalavrasOfensivas
+    String comentario;
 }
