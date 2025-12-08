@@ -10,20 +10,20 @@ public class TravelRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @NotBlank(message = "Origem é obrigatória")
-    String origem;
+    private String origem;
 
     @NotBlank(message = "Destino é obrigatório")
-    String destino;
+    private String destino;
 
     @Enumerated(EnumType.STRING)
-    TravelRequestStatus status = TravelRequestStatus.CREATED;
+    private TravelRequestStatus status = TravelRequestStatus.CREATED;
 
-    // Simples: apenas o ID do passageiro
-    Long passengerId;
+    @ManyToOne
+    @JoinColumn(name = "passenger_id")
+    private Passenger passenger;
 
-    // opcional: id do motorista que aceitou
-    Long driverId;
+    private Long driverId;
 }

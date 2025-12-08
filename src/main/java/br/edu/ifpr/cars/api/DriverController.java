@@ -38,7 +38,7 @@ public class DriverController {
     @GetMapping("/drivers/{id}")
     public Driver findDriver(@PathVariable("id") Long id) {
         return driverRepository.findById(id).orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/drivers")
@@ -63,6 +63,12 @@ public class DriverController {
         foundDriver.setBirthDate(Optional.ofNullable(driver.getBirthDate()).orElse(foundDriver.getBirthDate()));
         foundDriver.setEmail(Optional.ofNullable(driver.getEmail()).orElse(foundDriver.getEmail()));
         foundDriver.setCpf(Optional.ofNullable(driver.getCpf()).orElse(foundDriver.getCpf()));
+        foundDriver.setPlaca(Optional.ofNullable(driver.getPlaca()).orElse(foundDriver.getPlaca()));
+        foundDriver.setCnh(Optional.ofNullable(driver.getCnh()).orElse(foundDriver.getCnh()));
+        if (driver.getAnoCarro() != 0) {
+            foundDriver.setAnoCarro(driver.getAnoCarro());
+        }
+        foundDriver.setComentario(Optional.ofNullable(driver.getComentario()).orElse(foundDriver.getComentario())); 
         return driverRepository.save(foundDriver);
     }
 
